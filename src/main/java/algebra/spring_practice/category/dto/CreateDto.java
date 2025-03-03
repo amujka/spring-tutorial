@@ -1,4 +1,4 @@
-package algebra.spring_practice.category;
+package algebra.spring_practice.category.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

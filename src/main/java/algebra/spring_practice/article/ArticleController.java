@@ -1,5 +1,7 @@
 package algebra.spring_practice.article;
 
+import algebra.spring_practice.article.dto.CreateArticleDto;
+import algebra.spring_practice.article.dto.UpdateArticleDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,7 @@
 package algebra.spring_practice.category;
 
+import algebra.spring_practice.category.dto.CreateDto;
+import algebra.spring_practice.category.dto.UpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;

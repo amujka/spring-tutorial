@@ -1,4 +1,4 @@
-package algebra.spring_practice.article;
+package algebra.spring_practice.article.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
