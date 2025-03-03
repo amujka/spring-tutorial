@@ -37,5 +37,6 @@ public class ArticleRepository {
         jdbcTemplate.update(query,article.getName(),article.getDescription(),article.getPrice(),article.getCategory().getId(),article.getId());
         return article;
     }
+
 }
 

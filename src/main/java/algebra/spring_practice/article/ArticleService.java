@@ -1,5 +1,7 @@
 package algebra.spring_practice.article;
 
+import algebra.spring_practice.article.dto.CreateArticleDto;
+import algebra.spring_practice.article.dto.UpdateArticleDto;
 import algebra.spring_practice.category.Category;
 import algebra.spring_practice.category.CategoryRepository;
 import org.apache.logging.log4j.util.InternalException;
