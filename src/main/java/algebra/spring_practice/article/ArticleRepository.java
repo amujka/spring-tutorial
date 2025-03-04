@@ -8,4 +8,5 @@ public interface ArticleRepository {
     Optional<Article> findById(int id);
     Article createArticle(Article article);
     Article updateArticle(Article article);
+    void deleteById(int id);
 }

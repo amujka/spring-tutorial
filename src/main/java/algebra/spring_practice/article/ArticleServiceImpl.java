@@ -3,7 +3,7 @@ package algebra.spring_practice.article;
 import algebra.spring_practice.article.dto.CreateArticleDto;
 import algebra.spring_practice.article.dto.UpdateArticleDto;
 import algebra.spring_practice.category.Category;
-import algebra.spring_practice.category.CategoryRepository;
+import algebra.spring_practice.category.CategoryRepositoryImpl;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ import java.util.Optional;
 @Service
 public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepositoryImpl articleRepository;
-    private final CategoryRepository categoryRepository;
+    private final CategoryRepositoryImpl categoryRepository;
 
-    public ArticleServiceImpl(ArticleRepositoryImpl articleRepository, CategoryRepository categoryRepository){
+    public ArticleServiceImpl(ArticleRepositoryImpl articleRepository, CategoryRepositoryImpl categoryRepository){
         this.articleRepository = articleRepository;
         this.categoryRepository = categoryRepository;
     }
@@ -26,12 +26,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findById(int id){
-        Optional<Article> article = articleRepository.findById(id);
-        if (article.isEmpty()){
-            throw new InternalException("Article not found");
-        }
-        return article.get();
+    public Optional<Article> findById(int id){
+        return articleRepository.findById(id);
     }
 
     @Override
@@ -58,6 +54,10 @@ public class ArticleServiceImpl implements ArticleService {
         updatedArticle.setCategory(category.get());
 
         return articleRepository.updateArticle(updatedArticle);
+    }
 
+    @Override
+    public void deleteById(int id) {
+        articleRepository.deleteById(id);
     }
 }
