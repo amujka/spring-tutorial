@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class CategoryRowMapper implements RowMapper<Category> {
     @Override
     public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Integer id = rs.getInt("Id");
+        Integer id = rs.getInt("id");
         String name = rs.getString("name");
         String description = rs.getString("description");
         return new Category(id, name, description);

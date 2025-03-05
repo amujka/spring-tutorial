@@ -1,12 +1,9 @@
 package algebra.spring_practice.article;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ArticleRepository {
-    List<Article> fetchAll();
-    Optional<Article> findById(int id);
-    Article createArticle(Article article);
-    Article updateArticle(Article article);
-    void deleteById(int id);
+@Repository
+public interface ArticleRepository extends JpaRepository<Article, Integer> {
+    
 }
