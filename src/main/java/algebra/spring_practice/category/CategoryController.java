@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequestMapping("/categories")
 @RequiredArgsConstructor
 public class CategoryController {
-    private final CategoryService categoryService;
+    private final CategoryServiceImpl categoryService;
 
     @GetMapping
     public ResponseEntity<List<Category>> fetchAll(){
@@ -43,6 +43,10 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>delete(@PathVariable int id){
+        Optional<Category> category = categoryService.fetchById(id);
+
+        if (category.isEmpty()) return ResponseEntity.status(404).build();
+
         categoryService.delete(id);
         return ResponseEntity.status(204).build();
     }
