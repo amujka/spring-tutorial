@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,12 +17,30 @@ import java.util.Optional;
 public class ArticleController {
 
     private final ArticleService articleService;
+//
+//    @GetMapping
+//    public ResponseEntity<List<Article>> fetchAll(){
+//        List<Article> articles = articleService.fetchAll();
+//        return ResponseEntity.status(200).body(articles);
+//    }
 
     @GetMapping
-    public ResponseEntity<List<Article>> fetchAll(){
-        List<Article> articles = articleService.fetchAll();
+    public ResponseEntity<List<Article>> findAllByPriceBetweenAndCategory(@RequestParam(required = false) BigDecimal minPrice,@RequestParam(required = false) BigDecimal maxPrice,@RequestParam(required = false) Integer categoryId){
+        List<Article> articles;
+        if (minPrice != null && maxPrice != null && categoryId != null) {
+            articles = articleService.findAllByPriceBetweenAndCategory(minPrice, maxPrice, categoryId);
+        } else {
+            articles = articleService.fetchAll();
+        }
         return ResponseEntity.status(200).body(articles);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Article>> findByNameOrDescriptionIgnoreCase(@RequestParam String query){
+        List<Article> articles = articleService.findByNameOrDescriptionIgnoreCase(query);
+        return ResponseEntity.status(200).body(articles);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> findById(@PathVariable Integer id){

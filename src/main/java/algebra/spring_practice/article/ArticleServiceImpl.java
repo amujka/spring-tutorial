@@ -7,6 +7,7 @@ import algebra.spring_practice.category.CategoryRepositoryImpl;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> fetchAll(){
         return articleRepository.findAll();
+    }
+
+    @Override
+    public List<Article> findByNameOrDescriptionIgnoreCase(String query) {
+        return articleRepository.findByNameContainingOrDescriptionContaining(query);
+    }
+
+    @Override
+    public List<Article> findAllByPriceBetweenAndCategory(BigDecimal minPrice, BigDecimal maxPrice, Integer categoryId) {
+        return articleRepository.findAllByPriceBetweenAndCategory(minPrice,maxPrice,categoryId);
     }
 
     @Override
