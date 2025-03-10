@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface ProductService {
     List<Product> fetchAll();
-    Optional<Product> findById(int id);
+    Optional<Product> findById(long id);
     Product createProduct(CreateDto createProductDto);
     Product updateProduct(int id, UpdateDto updateDto);
-    void deleteById(int id);
+    void deleteById(long id);
 }

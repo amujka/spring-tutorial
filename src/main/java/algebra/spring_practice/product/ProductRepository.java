@@ -13,11 +13,11 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product>findByName(String name);
     List<Product> findByPriceBetween(BigDecimal min, BigDecimal max);
-    List<Product>findByAvailableTrue();
+    List<Product>findByIsAvailableTrue();
     List<Product>findByDescriptionContainingIgnoreCase(String word);
 
-    @Query("SELECT p FROM Product p WHERE p.available = false")
-    List<Product> findByAvailableFalse();
+    @Query("SELECT p FROM Product p WHERE p.is_available = false")
+    List<Product> findByIsAvailableFalse();
 
     @Query("SELECT p FROM Product p WHERE p.price NOT BETWEEN :min AND :max")
     List<Product> findByPriceNotBetween(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
