@@ -12,17 +12,17 @@ import java.util.Optional;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    private final ArticleRepositoryImpl articleRepository;
+    private final ArticleRepository articleRepository;
     private final CategoryRepositoryImpl categoryRepository;
 
-    public ArticleServiceImpl(ArticleRepositoryImpl articleRepository, CategoryRepositoryImpl categoryRepository){
+    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepositoryImpl categoryRepository){
         this.articleRepository = articleRepository;
         this.categoryRepository = categoryRepository;
     }
 
     @Override
     public List<Article> fetchAll(){
-        return articleRepository.fetchAll();
+        return articleRepository.findAll();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (category.isEmpty()) throw new InternalException("Category not found");
 
         Article article = new Article(createArticleDto.getName(),createArticleDto.getDescription(),createArticleDto.getPrice(),category.get());
-        return articleRepository.createArticle(article);
+        return articleRepository.save(article);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
         updatedArticle.setPrice(updateDto.getPrice());
         updatedArticle.setCategory(category.get());
 
-        return articleRepository.updateArticle(updatedArticle);
+        return articleRepository.save(updatedArticle);
     }
 
     @Override
@@ -61,3 +61,4 @@ public class ArticleServiceImpl implements ArticleService {
         articleRepository.deleteById(id);
     }
 }
+
