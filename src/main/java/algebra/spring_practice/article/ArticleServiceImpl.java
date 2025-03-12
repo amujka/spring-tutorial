@@ -3,7 +3,7 @@ package algebra.spring_practice.article;
 import algebra.spring_practice.article.dto.CreateArticleDto;
 import algebra.spring_practice.article.dto.UpdateArticleDto;
 import algebra.spring_practice.category.Category;
-import algebra.spring_practice.category.CategoryRepositoryImpl;
+import algebra.spring_practice.category.CategoryRepository;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,9 @@ import java.util.Optional;
 @Service
 public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
-    private final CategoryRepositoryImpl categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepositoryImpl categoryRepository){
+    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepository categoryRepository){
         this.articleRepository = articleRepository;
         this.categoryRepository = categoryRepository;
     }
@@ -34,6 +34,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> findAllByPriceBetweenAndCategory(BigDecimal minPrice, BigDecimal maxPrice, Integer categoryId) {
         return articleRepository.findAllByPriceBetweenAndCategory(minPrice,maxPrice,categoryId);
+    }
+
+    @Override
+    public Optional<Article> findTopByOrderByPriceDesc() {
+        return articleRepository.findTopByOrderByPriceDesc();
     }
 
     @Override

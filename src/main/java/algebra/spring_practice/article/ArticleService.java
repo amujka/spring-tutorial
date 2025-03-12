@@ -9,11 +9,13 @@ import java.util.Optional;
 
 public interface ArticleService {
     List<Article> fetchAll();
-    List<Article> findByNameOrDescriptionIgnoreCase(String query);
-    List<Article> findAllByPriceBetweenAndCategory(BigDecimal minPrice,BigDecimal maxPrice, Integer categoryId);
 
     Optional<Article> findById(int id);
     Article createArticle(CreateArticleDto createArticleDto);
     Article updateArticle(int id, UpdateArticleDto updateDto);
     void deleteById(int id);
+
+    List<Article> findByNameOrDescriptionIgnoreCase(String query);
+    List<Article> findAllByPriceBetweenAndCategory(BigDecimal minPrice,BigDecimal maxPrice, Integer categoryId);
+    Optional<Article> findTopByOrderByPriceDesc();
 }

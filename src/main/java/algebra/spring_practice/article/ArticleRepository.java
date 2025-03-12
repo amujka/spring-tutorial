@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
@@ -16,6 +17,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
     @Query("SELECT a FROM Article a WHERE a.name LIKE %:query% OR a.description LIKE %:query%")
     List<Article> findByNameContainingOrDescriptionContaining(@Param("query") String query);
-
+    
+    Optional<Article> findTopByOrderByPriceDesc();
 
 }

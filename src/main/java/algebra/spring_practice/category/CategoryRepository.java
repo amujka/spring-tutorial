@@ -1,12 +1,8 @@
 package algebra.spring_practice.category;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CategoryRepository {
-    Optional<Category> findById(Integer id);
-    List<Category> fetchAll();
-    Category update(Category category);
-    Category create(Category category);
-    void delete(int id);
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

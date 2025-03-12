@@ -16,7 +16,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> fetchAll(){
-        return categoryRepository.fetchAll();
+        return categoryRepository.findAll();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category create(CreateDto createDto){
         Category category = new Category(createDto.getName(),createDto.getDescription());
-        return categoryRepository.create(category);
+        return categoryRepository.save(category);
     }
 
     @Override
@@ -39,11 +39,11 @@ public class CategoryServiceImpl implements CategoryService {
         updatedCategory.setName(updateDto.getName());
         updatedCategory.setDescription(updateDto.getDescription());
 
-        return categoryRepository.update(updatedCategory);
+        return categoryRepository.save(updatedCategory);
     }
 
     @Override
     public void delete(int id){
-        categoryRepository.delete(id);
+        categoryRepository.deleteById(id);
     }
 }

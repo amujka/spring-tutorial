@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Category" +
-        "" +
-        "")
+@Table(name = "Category")
 public class Category {
 
     @Id

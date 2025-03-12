@@ -41,7 +41,13 @@ public class ArticleController {
         return ResponseEntity.status(200).body(articles);
     }
 
-
+    @GetMapping("/top-expensive")
+    public ResponseEntity<Article> findByNameOrDescriptionIgnoreCase(){
+        Optional<Article> article = articleService.findTopByOrderByPriceDesc();
+        if (article.isEmpty()) return ResponseEntity.status(404).build();
+        return ResponseEntity.status(200).body(article.get());
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<Article> findById(@PathVariable Integer id){
         Optional<Article> article = articleService.findById(id);
@@ -50,7 +56,6 @@ public class ArticleController {
 
         return ResponseEntity.status(200).body(article.get());
     }
-
 
     @PostMapping
     public ResponseEntity<Article> createArticle(@RequestBody CreateArticleDto createArticleDto){
